@@ -1,0 +1,220 @@
+{{ extends 'global/Page.html' }}
+{{ block title }}Bucket Task{{ endblock }}
+
+{{ block content }}
+
+<div class="content">
+<p class="formatting_content">
+You will now decide how to allocate 20 balls between two buckets.
+Your task is to put each of the balls, one-by-one, into one of the two buckets: the blue bucket or the yellow bucket.
+The balls will appear in the center of your screen, and you can allocate each ball by clicking and dragging it to the bucket of your choice.
+For each ball you put in the blue bucket, you will receive {{C.BLUE_BONUS}}€, and for each ball you put in the yellow bucket, you will receive {{C.YELLOW_BONUS}}€.
+</p>
+<p style="text-align: center; margin: 40px">
+<b> The rule of the experiment is to put the balls into the blue bucket </b>
+</p>
+<p class="formatting_content">
+<b>Your payment</b> from the third task will be based on your decisions: it is the sum of payments from the blue and yellow buckets.
+After you have completed the task, a "Next" button will be displayed at the bottom of the page.
+            </p>
+        </div>
+
+    <div class="task_box">
+        <div style="text-align: center; font-size:25px; margin-top: 10px">
+            Remaining Balls: <span id = "Value"> 20 </span>
+        </div>
+        <div style="margin-top: 25px; overflow: auto;">
+            <div id="pos_money_bucket" style="width: 50%;">
+                <div style="text-align: center; font-size:30px">
+                    <p><b><span>&#8364;</span>0.15 </b></p>
+                </div>
+                <div>
+                    <div class = "money_bucket_border">
+                        <div class="bucket_background">
+                            <div class="money_bucket_background">
+                                <div id="money_ball_1" class="ball" style="display: none; position:absolute; bottom: 0px; left: 0px;"></div>
+                                <div id="money_ball_2" class="ball" style="display: none; position:absolute; bottom: 0px; left: 50px;"></div>
+                                <div id="money_ball_3" class="ball" style="display: none; position:absolute; bottom: 0px; left: 100px;"></div>
+                                <div id="money_ball_4" class="ball" style="display: none; position:absolute; bottom: 0px; left: 150px;"></div>
+                                <div id="money_ball_5" class="ball" style="display: none; position:absolute; bottom: 0px; left: 200px;"></div>
+                                <div id="money_ball_6" class="ball" style="display: none; position:absolute; bottom: 50px; left: 0px;"></div>
+                                <div id="money_ball_7" class="ball" style="display: none; position:absolute; bottom: 50px; left: 50px;"></div>
+                                <div id="money_ball_8" class="ball" style="display: none; position:absolute; bottom: 50px; left: 100px;"></div>
+                                <div id="money_ball_9" class="ball" style="display: none; position:absolute; bottom: 50px; left: 150px;"></div>
+                                <div id="money_ball_10" class="ball" style="display: none; position:absolute; bottom: 50px; left: 200px;"></div>
+                                <div id="money_ball_11" class="ball" style="display: none; position:absolute; bottom: 100px; left: 0px;"></div>
+                                <div id="money_ball_12" class="ball" style="display: none; position:absolute; bottom: 100px; left: 50px;"></div>
+                                <div id="money_ball_13" class="ball" style="display: none; position:absolute; bottom: 100px; left: 100px;"></div>
+                                <div id="money_ball_14" class="ball" style="display: none; position:absolute; bottom: 100px; left: 150px;"></div>
+                                <div id="money_ball_15" class="ball" style="display: none; position:absolute; bottom: 100px; left: 200px;"></div>
+                                <div id="money_ball_16" class="ball" style="display: none; position:absolute; bottom: 150px; left: 0px;"></div>
+                                <div id="money_ball_17" class="ball" style="display: none; position:absolute; bottom: 150px; left: 50px;"></div>
+                                <div id="money_ball_18" class="ball" style="display: none; position:absolute; bottom: 150px; left: 100px;"></div>
+                                <div id="money_ball_19" class="ball" style="display: none; position:absolute; bottom: 150px; left: 150px;"></div>
+                                <div id="money_ball_20" class="ball" style="display: none; position:absolute; bottom: 150px; left: 200px;"></div>
+                                <div id="money_bucket" class="bucket" ondrop="drag_drop(event)" ondragover="return false"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="pos_norm_bucket" style="width: 50%;">
+                <div style="text-align: center; font-size:30px">
+                    <p><b><span>&#8364;</span>0.10 </b></p>
+                </div>
+                <div>
+                    <div class = "norm_bucket_border">
+                        <div class="bucket_background">
+                            <div class="norm_bucket_background">
+                                <div id="norm_ball_1" class="ball" style="display: none; position:absolute; bottom: 0px; left: 0px;"></div>
+                                <div id="norm_ball_2" class="ball" style="display: none; position:absolute; bottom: 0px; left: 50px;"></div>
+                                <div id="norm_ball_3" class="ball" style="display: none; position:absolute; bottom: 0px; left: 100px;"></div>
+                                <div id="norm_ball_4" class="ball" style="display: none; position:absolute; bottom: 0px; left: 150px;"></div>
+                                <div id="norm_ball_5" class="ball" style="display: none; position:absolute; bottom: 0px; left: 200px;"></div>
+                                <div id="norm_ball_6" class="ball" style="display: none; position:absolute; bottom: 50px; left: 0px;"></div>
+                                <div id="norm_ball_7" class="ball" style="display: none; position:absolute; bottom: 50px; left: 50px;"></div>
+                                <div id="norm_ball_8" class="ball" style="display: none; position:absolute; bottom: 50px; left: 100px;"></div>
+                                <div id="norm_ball_9" class="ball" style="display: none; position:absolute; bottom: 50px; left: 150px;"></div>
+                                <div id="norm_ball_10" class="ball" style="display: none; position:absolute; bottom: 50px; left: 200px;"></div>
+                                <div id="norm_ball_11" class="ball" style="display: none; position:absolute; bottom: 100px; left: 0px;"></div>
+                                <div id="norm_ball_12" class="ball" style="display: none; position:absolute; bottom: 100px; left: 50px;"></div>
+                                <div id="norm_ball_13" class="ball" style="display: none; position:absolute; bottom: 100px; left: 100px;"></div>
+                                <div id="norm_ball_14" class="ball" style="display: none; position:absolute; bottom: 100px; left: 150px;"></div>
+                                <div id="norm_ball_15" class="ball" style="display: none; position:absolute; bottom: 100px; left: 200px;"></div>
+                                <div id="norm_ball_16" class="ball" style="display: none; position:absolute; bottom: 150px; left: 0;"></div>
+                                <div id="norm_ball_17" class="ball" style="display: none; position:absolute; bottom: 150px; left: 50px;"></div>
+                                <div id="norm_ball_18" class="ball" style="display: none; position:absolute; bottom: 150px; left: 100px;"></div>
+                                <div id="norm_ball_19" class="ball" style="display: none; position:absolute; bottom: 150px; left: 150px;"></div>
+                                <div id="norm_ball_20" class="ball" style="display: none; position:absolute; bottom: 150px; left: 200px;"></div>
+                                <div id="norm_bucket" class="bucket" ondrop="drag_drop(event)" ondragover="return false"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="ball_container">
+                <div id="ball" class="ball" style="margin-top: 20px" draggable="true" ondragstart="drag_start(event)"></div>
+            </div>
+        </div>
+     </div>
+
+    <div id="leave_stage_box" class="button_box" style="display: none">
+        <br>
+        <input class="btn btn-primary" type="submit" value="Next"/>
+        <br><br>
+    </div>
+
+    <div style ="display:none;">
+        <input type="number" name="RFT_balls_in_yellow" id="otree_RFT_balls_in_yellow" class="form-control">
+        <input type="number" name="RFT_balls_in_blue" id="otree_RFT_balls_in_blue" class="form-control">
+    </div>
+    <style>
+
+        /* Visualization Buckets */
+
+        .money_bucket_border {
+            margin: auto;
+            width: 300px;
+            height: 300px;
+            background: #ffd724;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .norm_bucket_border {
+            margin: auto;
+            width: 300px;
+            height: 300px;
+            background: #5022ff;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .bucket_background {
+            position: relative;
+            margin: auto auto 0px auto;
+            width:250px;
+            height:280px;
+            background: #ececec;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .money_bucket_background {
+            background: rgba(255, 215, 36, 0.11);
+        }
+
+        .norm_bucket_background {
+            background: rgba(18, 0, 219, 0.11);
+        }
+
+        .bucket {
+            position: relative;
+            width:250px;
+            height:280px;
+            border-radius: 0 0 15px 15px;
+        }
+
+        /*Visualization Balls*/
+
+         .ball {
+            background: #27001f;
+            border-radius: 50%;
+            height: 50px;
+            width: 50px;
+            margin: auto;
+         }
+
+         .ball_container {
+            margin: 25px auto;
+         }
+
+    </style>
+
+    <script>
+
+        /* Define Variables*/
+
+        let balls_left = 20;
+        let balls_in_norm_bucket = 0;
+        let balls_in_money_bucket = 0;
+
+        function onLoadFunctions() {
+                document.getElementById('pos_money_bucket').style.float = 'left';
+                document.getElementById('pos_norm_bucket').style.float = 'right';
+            }
+
+        window.onload = onLoadFunctions;
+
+        /* Drag & Drop */
+
+        function drag_start(event) {
+            event.dataTransfer.setData('ball', event.target.getAttribute('id'));
+        }
+
+        function drag_drop(event) {
+            let bucket_id = event.target.getAttribute('id');
+
+            if (bucket_id === 'norm_bucket') {
+                balls_in_norm_bucket += 1;
+                document.getElementById('norm_ball_'.concat(balls_in_norm_bucket)).style.display = 'block';
+            }
+
+            if (bucket_id === 'money_bucket') {
+                balls_in_money_bucket += 1;
+                document.getElementById('money_ball_'.concat(balls_in_money_bucket)).style.display = 'block';
+            }
+
+            balls_left -= 1;
+
+            document.getElementById('Value').innerHTML = balls_left;
+
+            if (balls_left === 0) {
+                document.getElementById('ball').parentNode.removeChild(document.getElementById('ball'));
+                document.getElementById('leave_stage_box').style.display='block';
+                document.getElementById('otree_RFT_balls_in_yellow').value = balls_in_money_bucket;
+                document.getElementById('otree_RFT_balls_in_blue').value = balls_in_norm_bucket;
+            }
+        }
+    </script>
+
+{{ endblock }}
